@@ -1,0 +1,500 @@
+
+SQL> create table raymond_master
+  2  (
+  3  raymond_client varchar2(6) primary key check(raymond_client like 'R%'),
+  4  name varchar2(20) not null,
+  5  address1 varchar2(30),
+  6  city varchar2(15),
+  7  pincode number(8),
+  8  state varchar2(15),
+  9  bal_due numeric(10,2),
+ 10  paydone numeric(10,2)
+ 11  );
+
+Table created.
+
+SQL> insert into raymond_master values('&raymond_client','&name','&address1','&city','&pincode','&state','&bal_due','&paydone');
+Enter value for raymond_client: R00001
+Enter value for name: ravi shah
+Enter value for address1:
+Enter value for city: bombay
+Enter value for pincode: 400050
+Enter value for state: maharashtra
+Enter value for bal_due: 15000
+Enter value for paydone: 20000
+old   1: insert into raymond_master values('&raymond_client','&name','&address1','&city','&pincode','&state','&bal_due','&paydone')
+new   1: insert into raymond_master values('R00001','ravi shah','','bombay','400050','maharashtra','15000','20000')
+
+1 row created.
+
+SQL> /
+Enter value for raymond_client: R00002
+Enter value for name: sakshi pathak
+Enter value for address1:
+Enter value for city: madras
+Enter value for pincode: 780001
+Enter value for state: tamil nadu
+Enter value for bal_due: 0
+Enter value for paydone: 10000
+old   1: insert into raymond_master values('&raymond_client','&name','&address1','&city','&pincode','&state','&bal_due','&paydone')
+new   1: insert into raymond_master values('R00002','sakshi pathak','','madras','780001','tamil nadu','0','10000')
+
+1 row created.
+
+SQL> /
+Enter value for raymond_client: R00003
+Enter value for name: pramada jaguste
+Enter value for address1:
+Enter value for city: bombay
+Enter value for pincode: 400057
+Enter value for state: maharashtra
+Enter value for bal_due: 5000
+Enter value for paydone: 1200
+old   1: insert into raymond_master values('&raymond_client','&name','&address1','&city','&pincode','&state','&bal_due','&paydone')
+new   1: insert into raymond_master values('R00003','pramada jaguste','','bombay','400057','maharashtra','5000','1200')
+
+1 row created.
+
+SQL> /
+Enter value for raymond_client: R00004
+Enter value for name: binal navindgi
+Enter value for address1:
+Enter value for city: bombay
+Enter value for pincode: 400056
+Enter value for state: maharashtra
+Enter value for bal_due: 0
+Enter value for paydone: 12300
+old   1: insert into raymond_master values('&raymond_client','&name','&address1','&city','&pincode','&state','&bal_due','&paydone')
+new   1: insert into raymond_master values('R00004','binal navindgi','','bombay','400056','maharashtra','0','12300')
+
+1 row created.
+
+SQL> /
+Enter value for raymond_client: R00005
+Enter value for name: rajendra sreedharan
+Enter value for address1:
+Enter value for city: delhi
+Enter value for pincode: 100001
+Enter value for state: mumbay
+Enter value for bal_due: 2500
+Enter value for paydone: 23450
+old   1: insert into raymond_master values('&raymond_client','&name','&address1','&city','&pincode','&state','&bal_due','&paydone')
+new   1: insert into raymond_master values('R00005','rajendra sreedharan','','delhi','100001','mumbay','2500','23450')
+
+1 row created.
+
+SQL> /
+Enter value for raymond_client: R00006
+Enter value for name: dimpal patel
+Enter value for address1:
+Enter value for city: bombay
+Enter value for pincode: 400050
+Enter value for state: maharashtra
+Enter value for bal_due: 2000
+Enter value for paydone: 15000
+old   1: insert into raymond_master values('&raymond_client','&name','&address1','&city','&pincode','&state','&bal_due','&paydone')
+new   1: insert into raymond_master values('R00006','dimpal patel','','bombay','400050','maharashtra','2000','15000')
+
+1 row created.
+
+SQL> /
+Enter value for raymond_client: R00007
+Enter value for name: smiten patel
+Enter value for address1:
+Enter value for city: delhi
+Enter value for pincode: 110001
+Enter value for state: new delhi
+Enter value for bal_due: 1200
+Enter value for paydone: 0
+old   1: insert into raymond_master values('&raymond_client','&name','&address1','&city','&pincode','&state','&bal_due','&paydone')
+new   1: insert into raymond_master values('R00007','smiten patel','','delhi','110001','new delhi','1200','0')
+
+1 row created.
+
+SQL> select * from raymond_master;
+
+RAYMON NAME                 ADDRESS1                       CITY
+------ -------------------- ------------------------------ ---------------
+   PINCODE STATE              BAL_DUE    PAYDONE
+---------- --------------- ---------- ----------
+R00001 ravi shah                                           bombay
+    400050 maharashtra          15000      20000
+
+R00002 sakshi pathak                                       madras
+    780001 tamil nadu               0      10000
+
+R00003 pramada jaguste                                     bombay
+    400057 maharashtra           5000       1200
+
+
+RAYMON NAME                 ADDRESS1                       CITY
+------ -------------------- ------------------------------ ---------------
+   PINCODE STATE              BAL_DUE    PAYDONE
+---------- --------------- ---------- ----------
+R00004 binal navindgi                                      bombay
+    400056 maharashtra              0      12300
+
+R00005 rajendra sreedharan                                 delhi
+    100001 mumbay                2500      23450
+
+R00006 dimpal patel                                        bombay
+    400050 maharashtra           2000      15000
+
+
+RAYMON NAME                 ADDRESS1                       CITY
+------ -------------------- ------------------------------ ---------------
+   PINCODE STATE              BAL_DUE    PAYDONE
+---------- --------------- ---------- ----------
+R00007 smiten patel                                        delhi
+    110001 new delhi             1200          0
+
+
+7 rows selected.
+
+SQL> commit;
+
+Commit complete.
+
+SQL> create table raymond_product
+  2  (
+  3  productionno varchar2(6) primary key check(productionno like 'P%'),
+  4  description varchar2(15),
+  5  profitpercent number(4,2) not null,
+  6  unitmeasure varchar2(10) not null,
+  7  qtyonhand number(8) not null,
+  8  reoderlvl number(8) not null,
+  9  sellprice number(8,2) not null,
+ 10  costprice number(8,2)
+ 11  );
+
+Table created.
+
+SQL> insert into raymond_product values('&productionno','&description','&profitpercent','&unitmeasure','&qtyonhand','&reoderlvl','&sellprice','&costprice');
+Enter value for productionno: P00001
+Enter value for description: trousers
+Enter value for profitpercent: 5
+Enter value for unitmeasure: PIECE
+Enter value for qtyonhand: 200
+Enter value for reoderlvl: 50
+Enter value for sellprice: 350
+Enter value for costprice: 250
+old   1: insert into raymond_product values('&productionno','&description','&profitpercent','&unitmeasure','&qtyonhand','&reoderlvl','&sellprice','&costprice')
+new   1: insert into raymond_product values('P00001','trousers','5','PIECE','200','50','350','250')
+
+1 row created.
+
+SQL> /
+Enter value for productionno: P0345
+Enter value for description: T shirt
+Enter value for profitpercent: 6
+Enter value for unitmeasure:  PIECE
+Enter value for qtyonhand: 150
+Enter value for reoderlvl: 50
+Enter value for sellprice: 500
+Enter value for costprice: 350
+old   1: insert into raymond_product values('&productionno','&description','&profitpercent','&unitmeasure','&qtyonhand','&reoderlvl','&sellprice','&costprice')
+new   1: insert into raymond_product values('P0345','T shirt','6',' PIECE','150','50','500','350')
+
+1 row created.
+
+SQL> /
+Enter value for productionno: P06734
+Enter value for description: shirt
+Enter value for profitpercent: 5
+Enter value for unitmeasure:  PIECE
+Enter value for qtyonhand: 100
+Enter value for reoderlvl: 20
+Enter value for sellprice: 600
+Enter value for costprice: 450
+old   1: insert into raymond_product values('&productionno','&description','&profitpercent','&unitmeasure','&qtyonhand','&reoderlvl','&sellprice','&costprice')
+new   1: insert into raymond_product values('P06734','shirt','5',' PIECE','100','20','600','450')
+
+1 row created.
+
+SQL> /
+Enter value for productionno: P07865
+Enter value for description: material
+Enter value for profitpercent: 5
+Enter value for unitmeasure:  PIECE
+Enter value for qtyonhand: 100
+Enter value for reoderlvl: 20
+Enter value for sellprice: 750
+Enter value for costprice: 500
+old   1: insert into raymond_product values('&productionno','&description','&profitpercent','&unitmeasure','&qtyonhand','&reoderlvl','&sellprice','&costprice')
+new   1: insert into raymond_product values('P07865','material','5',' PIECE','100','20','750','500')
+
+1 row created.
+
+SQL> /
+Enter value for productionno: P07868
+Enter value for description: trousers
+Enter value for profitpercent: 2
+Enter value for unitmeasure:  PIECE
+Enter value for qtyonhand: 150
+Enter value for reoderlvl: 50
+Enter value for sellprice: 850
+Enter value for costprice: 550
+old   1: insert into raymond_product values('&productionno','&description','&profitpercent','&unitmeasure','&qtyonhand','&reoderlvl','&sellprice','&costprice')
+new   1: insert into raymond_product values('P07868','trousers','2',' PIECE','150','50','850','550')
+
+1 row created.
+
+SQL> /
+Enter value for productionno: P07975
+Enter value for description:
+Enter value for profitpercent: 4
+Enter value for unitmeasure:  PIECE
+Enter value for qtyonhand: 100
+Enter value for reoderlvl: 40
+Enter value for sellprice: 350
+Enter value for costprice: 250
+old   1: insert into raymond_product values('&productionno','&description','&profitpercent','&unitmeasure','&qtyonhand','&reoderlvl','&sellprice','&costprice')
+new   1: insert into raymond_product values('P07975','','4',' PIECE','100','40','350','250')
+
+1 row created.
+
+
+SQL> /
+Enter value for productionno: P07965
+Enter value for description: material
+Enter value for profitpercent: 5
+Enter value for unitmeasure:  PIECE
+Enter value for qtyonhand: 70
+Enter value for reoderlvl: 30
+Enter value for sellprice: 300
+Enter value for costprice: 175
+old   1: insert into raymond_product values('&productionno','&description','&profitpercent','&unitmeasure','&qtyonhand','&reoderlvl','&sellprice','&costprice')
+new   1: insert into raymond_product values('P07965','material','5',' PIECE','70','30','300','175')
+
+1 row created.
+
+SQL> /
+Enter value for productionno: P08865
+Enter value for description: shirt
+Enter value for profitpercent: 5
+Enter value for unitmeasure:  PIECE
+Enter value for qtyonhand: 75
+Enter value for reoderlvl: 30
+Enter value for sellprice: 450
+Enter value for costprice: 300
+old   1: insert into raymond_product values('&productionno','&description','&profitpercent','&unitmeasure','&qtyonhand','&reoderlvl','&sellprice','&costprice')
+new   1: insert into raymond_product values('P08865','shirt','5',' PIECE','75','30','450','300')
+
+1 row created.
+
+SQL> select
+  2
+SQL> select * from raymond_product;
+
+PRODUC DESCRIPTION     PROFITPERCENT UNITMEASUR  QTYONHAND  REODERLVL  SELLPRICE
+------ --------------- ------------- ---------- ---------- ---------- ----------
+ COSTPRICE
+----------
+P00001 trousers                    5 PIECE             200         50        350
+       250
+
+P0345  T shirt                     6  PIECE            150         50        500
+       350
+
+P06734 shirt                       5  PIECE            100         20        600
+       450
+
+
+PRODUC DESCRIPTION     PROFITPERCENT UNITMEASUR  QTYONHAND  REODERLVL  SELLPRICE
+------ --------------- ------------- ---------- ---------- ---------- ----------
+ COSTPRICE
+----------
+P07865 material                    5  PIECE            100         20        750
+       500
+
+P07868 trousers                    2  PIECE            150         50        850
+       550
+
+P07975                             4  PIECE            100         40        350
+       250
+
+
+PRODUC DESCRIPTION     PROFITPERCENT UNITMEASUR  QTYONHAND  REODERLVL  SELLPRICE
+------ --------------- ------------- ---------- ---------- ---------- ----------
+ COSTPRICE
+----------
+P07965 material                    5  PIECE             70         30        300
+       175
+
+P08865 shirt                       5  PIECE             75         30        450
+       300
+
+
+8 rows selected.
+
+SQL> commit;
+
+Commit complete.
+
+SQL> set line 300;
+SQL> select * from raymond_product;
+
+PRODUC DESCRIPTION     PROFITPERCENT UNITMEASUR  QTYONHAND  REODERLVL  SELLPRICE  COSTPRICE
+------ --------------- ------------- ---------- ---------- ---------- ---------- ----------
+P00001 trousers                    5 PIECE             200         50        350        250
+P0345  T shirt                     6  PIECE            150         50        500        350
+P06734 shirt                       5  PIECE            100         20        600        450
+P07865 material                    5  PIECE            100         20        750        500
+P07868 trousers                    2  PIECE            150         50        850        550
+P07975                             4  PIECE            100         40        350        250
+P07965 material                    5  PIECE             70         30        300        175
+P08865 shirt                       5  PIECE             75         30        450        300
+
+8 rows selected.
+
+
+SQL> create table raymond_salesman
+  2  (
+  3  salesmanno varchar2(6) primary key check(salesmanno like 'S%'),
+  4  salesmanname varchar2(20) not null,
+  5  address varchar2(30),
+  6  city varchar2(15),
+  7  pincode number(8),
+  8  state varchar2(20),
+  9  salamt number(8,2) not null,
+ 10  tgttoget number(6,2) not null,
+ 11  ytdsales number(6,2) not null,
+ 12  remarks varchar2(60)
+ 13  );
+
+Table created.
+
+SQL> commit;
+
+Commit complete.
+
+
+
+SQL> create table Raymond_order_2019
+  2  (
+  3  orderno varchar2(6) primary key check(orderno like'O%'),
+  4  clientno varchar2(6) references Raymond_master,
+  5  orderdate date not null,
+  6  Salesmanno varchar2(6) references Raymond_salesman_2019,
+  7  delytype char(5) check(delytype in('P','F')),
+  8  billyn char(5),
+  9  delydate date,
+ 10  orderstatus varchar2(10) check(orderstatus in('process','fulfilled','backorder','cancelled'))
+ 11  );
+
+Table created.
+
+SQL> commit;
+
+Commit complete.
+
+
+
+
+SQL> insert into Raymond_order_2019 values('&orderno','&clientno','&orderdate','&Salesmanno','&delytype','&billyn','&delydate','&orderstatus');
+Enter value for orderno: O19001
+Enter value for clientno: R00001
+Enter value for orderdate: 12-JUNE-04
+Enter value for salesmanno: S00001
+Enter value for delytype: F
+Enter value for billyn: N
+Enter value for delydate: 20-july-02
+Enter value for orderstatus: process
+old   1: insert into Raymond_order_2019 values('&orderno','&clientno','&orderdate','&Salesmanno','&delytype','&billyn','&delydate','&orderstatus')
+new   1: insert into Raymond_order_2019 values('O19001','R00001','12-JUNE-04','S00001','F','N','20-july-02','process')
+
+1 row created.
+
+SQL> /
+Enter value for orderno: O19002
+Enter value for clientno: R00002
+Enter value for orderdate: 25-JUNE-04
+Enter value for salesmanno: S00002
+Enter value for delytype: P
+Enter value for billyn: N
+Enter value for delydate: 27-july-02
+Enter value for orderstatus: Cancelled
+old   1: insert into Raymond_order_2019 values('&orderno','&clientno','&orderdate','&Salesmanno','&delytype','&billyn','&delydate','&orderstatus')
+new   1: insert into Raymond_order_2019 values('O19002','R00002','25-JUNE-04','S00002','P','N','27-july-02','Cancelled')
+insert into Raymond_order_2019 values('O19002','R00002','25-JUNE-04','S00002','P','N','27-july-02','Cancelled')
+*
+ERROR at line 1:
+ORA-02290: check constraint (SYSTEM.SYS_C007011) violated
+
+
+SQL> /
+Enter value for orderno: O19002
+Enter value for clientno: R00002
+Enter value for orderdate: 25-JUNE-04
+Enter value for salesmanno: S00002
+Enter value for delytype: P
+Enter value for billyn: N
+Enter value for delydate: 27-july-02
+Enter value for orderstatus: cancelled
+old   1: insert into Raymond_order_2019 values('&orderno','&clientno','&orderdate','&Salesmanno','&delytype','&billyn','&delydate','&orderstatus')
+new   1: insert into Raymond_order_2019 values('O19002','R00002','25-JUNE-04','S00002','P','N','27-july-02','cancelled')
+
+1 row created.
+
+SQL> /
+Enter value for orderno: O46865
+Enter value for clientno: R00003
+Enter value for orderdate: 18-FEB-04
+Enter value for salesmanno: S00003
+Enter value for delytype: F
+Enter value for billyn: Y
+Enter value for delydate: 20-feb-02
+Enter value for orderstatus: fulfilled
+old   1: insert into Raymond_order_2019 values('&orderno','&clientno','&orderdate','&Salesmanno','&delytype','&billyn','&delydate','&orderstatus')
+new   1: insert into Raymond_order_2019 values('O46865','R00003','18-FEB-04','S00003','F','Y','20-feb-02','fulfilled')
+
+1 row created.
+
+SQL> /
+Enter value for orderno: O19003
+Enter value for clientno: R00001
+Enter value for orderdate: 03-APR-04
+Enter value for salesmanno: S00001
+Enter value for delytype: F
+Enter value for billyn: Y
+Enter value for delydate: 7-apr-02
+Enter value for orderstatus: cancelled
+old   1: insert into Raymond_order_2019 values('&orderno','&clientno','&orderdate','&Salesmanno','&delytype','&billyn','&delydate','&orderstatus')
+new   1: insert into Raymond_order_2019 values('O19003','R00001','03-APR-04','S00001','F','Y','7-apr-02','cancelled')
+
+1 row created.
+
+SQL> /
+Enter value for orderno: O46866
+Enter value for clientno: R00004
+Enter value for orderdate: 20-MAY-04
+Enter value for salesmanno: S00002
+Enter value for delytype: P
+Enter value for billyn: N
+Enter value for delydate: 22-may-02
+Enter value for orderstatus: fulfilled
+old   1: insert into Raymond_order_2019 values('&orderno','&clientno','&orderdate','&Salesmanno','&delytype','&billyn','&delydate','&orderstatus')
+new   1: insert into Raymond_order_2019 values('O46866','R00004','20-MAY-04','S00002','P','N','22-may-02','fulfilled')
+insert into Raymond_order_2019 values('O46866','R00004','20-MAY-04','S00002','P','N','22-may-02','fulfilled')
+*
+ERROR at line 1:
+ORA-02291: integrity constraint (SYSTEM.SYS_C007013) violated - parent key not
+found
+
+
+SQL> select * from Raymond_order_2019;
+
+ORDERN CLIENT ORDERDATE SALESM DELYT BILLY DELYDATE  ORDERSTATU
+------ ------ --------- ------ ----- ----- --------- ----------
+O19001 R00001 12-JUN-04 S00001 F     N     20-JUL-02 process
+O19002 R00002 25-JUN-04 S00002 P     N     27-JUL-02 cancelled
+O46865 R00003 18-FEB-04 S00003 F     Y     20-FEB-02 fulfilled
+O19003 R00001 03-APR-04 S00001 F     Y     07-APR-02 cancelled
+
+SQL> commit;
+
+Commit complete.
+
+
+
+

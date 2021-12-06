@@ -1,0 +1,301 @@
+
+SQL> connect
+Enter user-name: system
+Enter password:
+Connected.
+
+
+
+SQL> create table Student_as_qpm_2019
+  2  (
+  3  student_id number(10),
+  4  student_name varchar2(20),
+  5  joindate date,
+  6  fees numeric(15)
+  7  );
+
+Table created.
+
+
+
+SQL> insert into student_as_qpm_2019 values(1,'nidhi','01-jun-2014',10000);
+
+1 row created.
+
+SQL> insert into student_as_qpm_2019 values(2,'rajesh','05-jun-2014',15000);
+
+1 row created.
+
+SQL> insert into student_as_qpm_2019 values(3,'rima','03-jun-2014',17000);
+
+1 row created.
+
+SQL> insert into student_as_qpm_2019 values(4,'krima','21-jun-2014',20000);
+
+1 row created.
+
+SQL> insert into student_as_qpm_2019 values(5,'hetav','30-jun-2014',8000);
+
+1 row created.
+
+SQL> insert into student_as_qpm_2019 values(6,'ashwini','04-july-2014',15000);
+
+1 row created.
+
+SQL> insert into student_as_qpm_2019 values(7,'kaya','12-july-2014',10000);
+
+1 row created.
+
+SQL> insert into student_as_qpm_2019 values(8,'raj','17-july-2014',15000);
+
+1 row created.
+
+SQL> insert into student_as_qpm_2019 values(9,'omkar','21-july-2014',20000);
+
+1 row created.
+
+SQL> insert into student_as_qpm_2019 values(10,'ashish','01-aug-2014',22000);
+
+1 row created.
+
+SQL> select * from student_as_qpm_2019;
+
+STUDENT_ID STUDENT_NAME         JOINDATE        FEES
+---------- -------------------- --------- ----------
+         1 nidhi                01-JUN-14      10000
+         2 rajesh               05-JUN-14      15000
+         3 rima                 03-JUN-14      17000
+         4 krima                21-JUN-14      20000
+         5 hetav                30-JUN-14       8000
+         6 ashwini              04-JUL-14      15000
+         7 kaya                 12-JUL-14      10000
+         8 raj                  17-JUL-14      15000
+         9 omkar                21-JUL-14      20000
+        10 ashish               01-AUG-14      22000
+
+10 rows selected.
+
+SQL> update student_as_qpm_2019 set joindate='15-jun-2014';
+
+10 rows updated.
+
+SQL> select * from student_as_qpm_2019;
+
+STUDENT_ID STUDENT_NAME         JOINDATE        FEES
+---------- -------------------- --------- ----------
+         1 nidhi                15-JUN-14      10000
+         2 rajesh               15-JUN-14      15000
+         3 rima                 15-JUN-14      17000
+         4 krima                15-JUN-14      20000
+         5 hetav                15-JUN-14       8000
+         6 ashwini              15-JUN-14      15000
+         7 kaya                 15-JUN-14      10000
+         8 raj                  15-JUN-14      15000
+         9 omkar                15-JUN-14      20000
+        10 ashish               15-JUN-14      22000
+
+10 rows selected.
+
+SQL> update student_as_qpm_2019 set joindate='01-jun-2014' where student_id=1;
+
+1 row updated.
+
+SQL> update student_as_qpm_2019 set joindate='05-jun-2014' where student_id=2;
+
+1 row updated.
+
+SQL> update student_as_qpm_2019 set joindate='21-jun-2014' where student_id=4;
+
+1 row updated.
+
+SQL> update student_as_qpm_2019 set joindate='30-jun-2014' where student_id=5;
+
+1 row updated.
+
+SQL> update student_as_qpm_2019 set joindate='04-july-2014' where student_id=6;
+
+1 row updated.
+
+SQL> update student_as_qpm_2019 set joindate='12-july-2014' where student_id=7;
+
+1 row updated.
+
+SQL> update student_as_qpm_2019 set joindate='17-july-2014' where student_id=8;
+
+1 row updated.
+
+SQL> update student_as_qpm_2019 set joindate='21-july-2014' where student_id=9;
+
+1 row updated.
+
+SQL> update student_as_qpm_2019 set joindate='01-aug-2014' where student_id=10;
+
+1 row updated.
+
+SQL> select * from student_as_qpm_2019;
+
+STUDENT_ID STUDENT_NAME         JOINDATE        FEES
+---------- -------------------- --------- ----------
+         1 nidhi                01-JUN-14      10000
+         2 rajesh               05-JUN-14      15000
+         3 rima                 15-JUN-14      17000
+         4 krima                21-JUN-14      20000
+         5 hetav                30-JUN-14       8000
+         6 ashwini              04-JUL-14      15000
+         7 kaya                 12-JUL-14      10000
+         8 raj                  17-JUL-14      15000
+         9 omkar                21-JUL-14      20000
+        10 ashish               01-AUG-14      22000
+
+10 rows selected.
+
+SQL> alter table student_as_qpm_2019 add (city varchar(20));
+
+Table altered.
+
+SQL> commit;
+
+Commit complete.
+
+SQL> select * from student_as_qpm_2019;
+
+STUDENT_ID STUDENT_NAME         JOINDATE        FEES CITY
+---------- -------------------- --------- ---------- --------------------
+         1 nidhi                01-JUN-14      10000
+         2 rajesh               05-JUN-14      15000
+         3 rima                 15-JUN-14      17000
+         4 krima                21-JUN-14      20000
+         5 hetav                30-JUN-14       8000
+         6 ashwini              04-JUL-14      15000
+         7 kaya                 12-JUL-14      10000
+         8 raj                  17-JUL-14      15000
+         9 omkar                21-JUL-14      20000
+        10 ashish               01-AUG-14      22000
+
+10 rows selected.
+
+SQL> alter table student_as_qpm_2019 modify (student_name varchar2(30));
+
+Table altered.
+
+SQL> rename student_as_qpm_2019 to student_batch_2019;
+
+Table renamed.
+
+SQL> commit;
+
+Commit complete.
+
+
+SQL> delete from student_batch_2019 where student_id=10;
+
+1 row deleted.
+
+
+SQL> select * from student_batch_2019;
+
+STUDENT_ID STUDENT_NAME                   JOINDATE        FEES
+---------- ------------------------------ --------- ----------
+CITY
+--------------------
+         1 nidhi                          01-JUN-14      10000
+
+
+         2 rajesh                         05-JUN-14      15000
+
+
+         3 rima                           15-JUN-14      17000
+
+
+
+STUDENT_ID STUDENT_NAME                   JOINDATE        FEES
+---------- ------------------------------ --------- ----------
+CITY
+--------------------
+         4 krima                          21-JUN-14      20000
+
+
+         5 hetav                          30-JUN-14       8000
+
+
+         6 ashwini                        04-JUL-14      15000
+
+
+
+STUDENT_ID STUDENT_NAME                   JOINDATE        FEES
+---------- ------------------------------ --------- ----------
+CITY
+--------------------
+         7 kaya                           12-JUL-14      10000
+
+
+         8 raj                            17-JUL-14      15000
+
+
+         9 omkar                          21-JUL-14      20000
+
+
+
+9 rows selected.
+
+SQL> rollback;
+
+Rollback complete.
+
+SQL> select * from student_batch_2019;
+
+STUDENT_ID STUDENT_NAME                   JOINDATE        FEES
+---------- ------------------------------ --------- ----------
+CITY
+--------------------
+         1 nidhi                          01-JUN-14      10000
+
+
+         2 rajesh                         05-JUN-14      15000
+
+
+         3 rima                           15-JUN-14      17000
+
+
+
+STUDENT_ID STUDENT_NAME                   JOINDATE        FEES
+---------- ------------------------------ --------- ----------
+CITY
+--------------------
+         4 krima                          21-JUN-14      20000
+
+
+         5 hetav                          30-JUN-14       8000
+
+
+         6 ashwini                        04-JUL-14      15000
+
+
+
+STUDENT_ID STUDENT_NAME                   JOINDATE        FEES
+---------- ------------------------------ --------- ----------
+CITY
+--------------------
+         7 kaya                           12-JUL-14      10000
+
+
+         8 raj                            17-JUL-14      15000
+
+
+         9 omkar                          21-JUL-14      20000
+
+
+
+STUDENT_ID STUDENT_NAME                   JOINDATE        FEES
+---------- ------------------------------ --------- ----------
+CITY
+--------------------
+        10 ashish                         01-AUG-14      22000
+
+
+
+10 rows selected.
+
+SQL> commit;
+
+Commit complete.

@@ -1,0 +1,482 @@
+Practical NO.3
+SQL> create table country_information_asi_2019
+  2  (
+  3  CID number(7) primary key,
+  4  CCode varchar2(10),
+  5  CName varchar2(15) not null,
+  6  Grade varchar2(6) not null,
+  7  CRemark varchar2(20)
+  8  );
+
+Table created.
+
+
+SQL> desc Country_information_asi_2019
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ CID                                       NOT NULL NUMBER(7)
+ CCODE                                              VARCHAR2(10)
+ CNAME                                     NOT NULL VARCHAR2(15)
+ GRADE                                     NOT NULL VARCHAR2(6)
+ CREMARK                                            VARCHAR2(20)
+
+
+SQL> insert into Country_information_asi_2019 values('&CID','&ccode','&cname','&grade','&cremark');
+Enter value for cid: 12464
+Enter value for ccode: 10021
+Enter value for cname: India
+Enter value for grade: A2
+Enter value for cremark: Under develop c1
+old   1: insert into Country_information_asi_2019 values('&CID','&ccode','&cname','&grade','&cremark')
+new   1: insert into Country_information_asi_2019 values('12464','10021','India','A2','Under develop c1')
+
+1 row created.
+
+SQL> /
+Enter value for cid: 23675
+Enter value for ccode: 10032
+Enter value for cname: Canada
+Enter value for grade: A1
+Enter value for cremark:
+old   1: insert into Country_information_asi_2019 values('&CID','&ccode','&cname','&grade','&cremark')
+new   1: insert into Country_information_asi_2019 values('23675','10032','Canada','A1','')
+
+1 row created.
+
+SQL> /
+Enter value for cid: 67543
+Enter value for ccode: 10043
+Enter value for cname: Japan
+Enter value for grade: A1
+Enter value for cremark: Develop country
+old   1: insert into Country_information_asi_2019 values('&CID','&ccode','&cname','&grade','&cremark')
+new   1: insert into Country_information_asi_2019 values('67543','10043','Japan','A1','Develop country')
+
+1 row created.
+
+SQL> /
+Enter value for cid: 45687
+Enter value for ccode: 10064
+Enter value for cname: China
+Enter value for grade: B1
+Enter value for cremark: Under develop
+old   1: insert into Country_information_asi_2019 values('&CID','&ccode','&cname','&grade','&cremark')
+new   1: insert into Country_information_asi_2019 values('45687','10064','China','B1','Under develop')
+
+1 row created.
+
+SQL> /
+Enter value for cid: 76589
+Enter value for ccode: 10055
+Enter value for cname: Canada
+Enter value for grade: A2
+Enter value for cremark: Develop country
+old   1: insert into Country_information_asi_2019 values('&CID','&ccode','&cname','&grade','&cremark')
+new   1: insert into Country_information_asi_2019 values('76589','10055','Canada','A2','Develop country')
+
+1 row created.
+
+SQL> /
+Enter value for cid: 56894
+Enter value for ccode: 10086
+Enter value for cname: Pakistan
+Enter value for grade: C1
+Enter value for cremark: Under devlop
+old   1: insert into Country_information_asi_2019 values('&CID','&ccode','&cname','&grade','&cremark')
+new   1: insert into Country_information_asi_2019 values('56894','10086','Pakistan','C1','Under devlop')
+
+1 row created.
+
+SQL> /
+Enter value for cid: 45678
+Enter value for ccode: 10077
+Enter value for cname: Australia
+Enter value for grade: B2
+Enter value for cremark: Develop c1
+old   1: insert into Country_information_asi_2019 values('&CID','&ccode','&cname','&grade','&cremark')
+new   1: insert into Country_information_asi_2019 values('45678','10077','Australia','B2','Develop c1')
+
+1 row created.
+
+SQL> /
+Enter value for cid: 35689
+Enter value for ccode: 10098
+Enter value for cname: US
+Enter value for grade: A1
+Enter value for cremark: develop
+old   1: insert into Country_information_asi_2019 values('&CID','&ccode','&cname','&grade','&cremark')
+new   1: insert into Country_information_asi_2019 values('35689','10098','US','A1','develop')
+
+1 row created.
+
+SQL> select * from Country_information_asi_2019;
+
+       CID CCODE      CNAME           GRADE  CREMARK
+---------- ---------- --------------- ------ --------------------
+     12464 10021      India           A2     Under develop c1
+     23675 10032      Canada          A1
+     67543 10043      Japan           A1     Develop country
+     45687 10064      China           B1     Under develop
+     76589 10055      Canada          A2     Develop country
+     56894 10086      Pakistan        C1     Under devlop
+     45678 10077      Australia       B2     Develop c1
+     35689 10098      US              A1     develop
+
+8 rows selected.
+
+SQL> commit;
+
+Commit complete.
+**********************************************************************************************************
+SQL> create table State_information_ansi_2019
+  2  (
+  3  SID number(7) primary key,
+  4  Scode varchar2(10),
+  5  Sname varchar2(15) not null,
+  6  CID number(10) references country_information_asi_2019,
+  7  Sremark varchar2(20)
+  8  );
+
+Table created.
+
+SQL> desc State_information_ansi_2019;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ SID                                       NOT NULL NUMBER(7)
+ SCODE                                              VARCHAR2(10)
+ SNAME                                     NOT NULL VARCHAR2(15)
+ CID                                                NUMBER(10)
+ SREMARK                                            VARCHAR2(20)
+
+SQL> insert into State_information_ansi_2019 values('&SID','&Scode','&Sname','&CID','&Sremark');
+Enter value for sid: 56734
+Enter value for scode: 40601
+Enter value for sname: Gujrat
+Enter value for cid: 67543
+Enter value for sremark: Develop
+old   1: insert into State_information_ansi_2019 values('&SID','&Scode','&Sname','&CID','&Sremark')
+new   1: insert into State_information_ansi_2019 values('56734','40601','Gujrat','67543','Develop')
+
+1 row created.
+
+SQL> commit;
+
+Commit complete.
+
+SQL> /
+Enter value for sid: 46589
+Enter value for scode: 40802
+Enter value for sname: Rajasthan
+Enter value for cid: 45678
+Enter value for sremark: Under develop
+old   1: insert into State_information_ansi_2019 values('&SID','&Scode','&Sname','&CID','&Sremark')
+new   1: insert into State_information_ansi_2019 values('46589','40802','Rajasthan','45678','Under develop')
+
+1 row created.
+
+SQL> /
+Enter value for sid: 67849
+Enter value for scode: 40403
+Enter value for sname: Bihar
+Enter value for cid: 76589
+Enter value for sremark: Unmder develop
+old   1: insert into State_information_ansi_2019 values('&SID','&Scode','&Sname','&CID','&Sremark')
+new   1: insert into State_information_ansi_2019 values('67849','40403','Bihar','76589','Unmder develop')
+
+1 row created.
+
+SQL> /
+Enter value for sid: 23454
+Enter value for scode: 40504
+Enter value for sname: Mizoram
+Enter value for cid: 35689
+Enter value for sremark: Semi develop
+old   1: insert into State_information_ansi_2019 values('&SID','&Scode','&Sname','&CID','&Sremark')
+new   1: insert into State_information_ansi_2019 values('23454','40504','Mizoram','35689','Semi develop')
+
+1 row created.
+
+SQL> /
+Enter value for sid: 78934
+Enter value for scode: 40705
+Enter value for sname: Asham
+Enter value for cid: 67543
+Enter value for sremark: develop
+old   1: insert into State_information_ansi_2019 values('&SID','&Scode','&Sname','&CID','&Sremark')
+new   1: insert into State_information_ansi_2019 values('78934','40705','Asham','67543','develop')
+
+1 row created.
+
+SQL> /
+Enter value for sid: 87626
+Enter value for scode: 40606
+Enter value for sname: Delhi
+Enter value for cid: 76589
+Enter value for sremark: Under develop
+old   1: insert into State_information_ansi_2019 values('&SID','&Scode','&Sname','&CID','&Sremark')
+new   1: insert into State_information_ansi_2019 values('87626','40606','Delhi','76589','Under develop')
+
+1 row created.
+
+SQL> /
+Enter value for sid: 35617
+Enter value for scode: 40907
+Enter value for sname: Uttar Pradesh
+Enter value for cid: 67543
+Enter value for sremark: Under develop
+old   1: insert into State_information_ansi_2019 values('&SID','&Scode','&Sname','&CID','&Sremark')
+new   1: insert into State_information_ansi_2019 values('35617','40907','Uttar Pradesh','67543','Under develop')
+
+1 row created.
+
+SQL> /
+Enter value for sid: 75328
+Enter value for scode: 40208
+Enter value for sname: Madya Pradesh
+Enter value for cid: 35689
+Enter value for sremark: Under develop
+old   1: insert into State_information_ansi_2019 values('&SID','&Scode','&Sname','&CID','&Sremark')
+new   1: insert into State_information_ansi_2019 values('75328','40208','Madya Pradesh','35689','Under develop')
+
+1 row created.
+
+SQL> select * from State_information_ansi_2019;
+
+       SID SCODE      SNAME                  CID SREMARK
+---------- ---------- --------------- ---------- --------------------
+     56734 40601      Gujrat               67543 Develop
+     46589 40802      Rajasthan            45678 Under develop
+     67849 40403      Bihar                76589 Unmder develop
+     23454 40504      Mizoram              35689 Semi develop
+     78934 40705      Asham                67543 develop
+     87626 40606      Delhi                76589 Under develop
+     35617 40907      Uttar Pradesh        67543 Under develop
+     75328 40208      Madya Pradesh        35689 Under develop
+
+8 rows selected.
+
+SQL> commit;
+
+Commit complete.
+***********************************************************************************************
+
+
+
+
+SQL> create table City_information_nsa_2019
+  2  (
+  3  CTID number(7) primary key,
+  4  CTName varchar2(15) not null,
+  5  SID number(7) references State_information_ansi_2019,
+  6  CTRemark varchar2(20)
+  7  );
+
+Table created.
+
+SQL> insert into City_information_nsa_2019 values('&CTID','&CTName','&SID','&CTRemark')
+  2
+SQL> insert into City_information_nsa_2019 values('&CTID','&CTName','&SID','&CTRemark');
+Enter value for ctid: 15638
+Enter value for ctname: Ahmadabad
+Enter value for sid: 56734
+Enter value for ctremark: Develop
+old   1: insert into City_information_nsa_2019 values('&CTID','&CTName','&SID','&CTRemark')
+new   1: insert into City_information_nsa_2019 values('15638','Ahmadabad','56734','Develop')
+
+1 row created.
+
+SQL> /
+Enter value for ctid: 16539
+Enter value for ctname: Vadodara
+Enter value for sid: 56734
+Enter value for ctremark: Under develop
+old   1: insert into City_information_nsa_2019 values('&CTID','&CTName','&SID','&CTRemark')
+new   1: insert into City_information_nsa_2019 values('16539','Vadodara','56734','Under develop')
+
+1 row created.
+
+SQL> /
+Enter value for ctid: 15639
+Enter value for ctname: Anand
+Enter value for sid: 56734
+Enter value for ctremark: Under develop
+old   1: insert into City_information_nsa_2019 values('&CTID','&CTName','&SID','&CTRemark')
+new   1: insert into City_information_nsa_2019 values('15639','Anand','56734','Under develop')
+
+1 row created.
+
+SQL> /
+Enter value for ctid: 16540
+Enter value for ctname: Rajkot
+Enter value for sid: 56734
+Enter value for ctremark: Under develop
+old   1: insert into City_information_nsa_2019 values('&CTID','&CTName','&SID','&CTRemark')
+new   1: insert into City_information_nsa_2019 values('16540','Rajkot','56734','Under develop')
+
+1 row created.
+
+SQL> /
+Enter value for ctid: 15640
+Enter value for ctname: Surat
+Enter value for sid: 56734
+Enter value for ctremark: Under develop
+old   1: insert into City_information_nsa_2019 values('&CTID','&CTName','&SID','&CTRemark')
+new   1: insert into City_information_nsa_2019 values('15640','Surat','56734','Under develop')
+
+1 row created.
+
+SQL> /
+Enter value for ctid: 17540
+Enter value for ctname: Mumbai
+Enter value for sid: 23454
+Enter value for ctremark: Under develop
+old   1: insert into City_information_nsa_2019 values('&CTID','&CTName','&SID','&CTRemark')
+new   1: insert into City_information_nsa_2019 values('17540','Mumbai','23454','Under develop')
+
+1 row created.
+
+SQL> /
+Enter value for ctid: 15641
+Enter value for ctname: Junagad
+Enter value for sid: 35617
+Enter value for ctremark: Under develop
+old   1: insert into City_information_nsa_2019 values('&CTID','&CTName','&SID','&CTRemark')
+new   1: insert into City_information_nsa_2019 values('15641','Junagad','35617','Under develop')
+
+1 row created.
+
+SQL> /
+Enter value for ctid: 15671
+Enter value for ctname: Amareli
+Enter value for sid: 35617
+Enter value for ctremark: Under develop
+old   1: insert into City_information_nsa_2019 values('&CTID','&CTName','&SID','&CTRemark')
+new   1: insert into City_information_nsa_2019 values('15671','Amareli','35617','Under develop')
+
+1 row created.
+
+SQL> select * from City_information_nsa_2019;
+
+      CTID CTNAME                 SID CTREMARK
+---------- --------------- ---------- --------------------
+     15638 Ahmadabad            56734 Develop
+     16539 Vadodara             56734 Under develop
+     15639 Anand                56734 Under develop
+     16540 Rajkot               56734 Under develop
+     15640 Surat                56734 Under develop
+     17540 Mumbai               23454 Under develop
+     15641 Junagad              35617 Under develop
+     15671 Amareli              35617 Under develop
+
+8 rows selected.
+********************************************************************************************************************
+
+Queries:
+
+1) Select all the data of city table.
+
+SQL> select * from City_information_nsa_2019;
+
+      CTID CTNAME                 SID CTREMARK
+---------- --------------- ---------- --------------------
+     15638 Ahmadabad            56734 Develop
+     16539 Vadodara             56734 Under develop
+     15639 Anand                56734 Under develop
+     16540 Rajkot               56734 Under develop
+     15640 Surat                56734 Under develop
+     17540 Mumbai               23454 Under develop
+     15641 Junagad              35617 Under develop
+     15671 Amareli              35617 Under develop
+
+8 rows selected.
+
+*************************************************************
+2) Retrieve all the content of country table
+
+SQL> select * from Country_information_asi_2019;
+
+       CID CCODE      CNAME           GRADE  CREMARK
+---------- ---------- --------------- ------ --------------------
+     12464 10021      India           A2     Under develop c1
+     23675 10032      Canada          A1
+     67543 10043      Japan           A1      Develop country
+     45687 10064      China            B1    Under develop
+     76589  10055     Canada          A2      Develop country
+     56894 10086      Pakistan        C1     Under devlop
+     45678 10077      Australia       B2     Develop c1
+     35689 10098      US              A1     develop
+
+8 rows selected.
+
+
+
+*************************************************************
+3) change the city sid no 465
+
+update City_information_nsa_2019 set city='Anand' where SID='465';
+
+update City_information_nsa_2019 set city='Anand' where SID='465'
+                                     *
+ERROR at line 1:
+ORA-00904: "CITY": invalid identifier
+
+
+*************************************************************
+4) Update two states from state table.
+
+SQL> update State_information_ansi_2019 set Sname='&Sname' where Scode='&Scode';
+Enter value for sname: Maharashtra
+Enter value for scode: 40601
+old   1: update State_information_ansi_2019 set Sname='&Sname' where Scode='&Scode'
+new   1: update State_information_ansi_2019 set Sname='Maharashtra' where Scode='40601'
+
+1 row updated.
+
+
+SQL> /
+Enter value for sname: Karnataka
+Enter value for scode: 40802
+old   1: update State_information_ansi_2019 set Sname='&Sname' where Scode='&Scode'
+new   1: update State_information_ansi_2019 set Sname='Karnataka' where Scode='40802'
+
+1 row updated.
+
+SQL> select * from State_information_ansi_2019;
+
+       SID SCODE      SNAME                  CID SREMARK
+---------- ---------- --------------- ---------- --------------------
+     56734 40601      Maharashtra          67543 Develop
+     46589 40802      Karnataka            45678 Under develop
+     67849 40403      Bihar                76589 Unmder develop
+     23454 40504      Mizoram              35689 Semi develop
+     78934 40705      Asham                67543 develop
+     87626 40606      Delhi                76589 Under develop
+     35617 40907      Uttar Pradesh        67543 Under develop
+     75328 40208      Madya Pradesh        35689 Under develop
+
+8 rows selected.
+
+*************************************************************
+5) Change state fill.
+
+
+
+*************************************************************
+6) Add city pin code.
+ 
+
+************************************************************
+7) delete country china from country table.
+
+
+************************************************************
+8) Delete all countries from country table.
+
+
+************************************************************
+9) Delete all states from state table.
+
+
+************************************************************
+10) Delete all cities from city table.
+

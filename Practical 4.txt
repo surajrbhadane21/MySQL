@@ -1,0 +1,211 @@
+SQL> create table Rto_License_2019
+  2  (
+  3  License_Number varchar2(10) primary key,
+  4  License_date date,
+  5  Owner_Name varchar(25)not null,
+  6  Age number(2),
+  7  Payment_mode number(6,2),
+  8  Gender varchar(2)
+  9  );
+
+Table created.
+
+SQL> desc Rto_License_2019;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ LICENSE_NUMBER                            NOT NULL VARCHAR2(10)
+ LICENSE_DATE                                       DATE
+ OWNER_NAME                                NOT NULL VARCHAR2(25)
+ AGE                                                NUMBER(2)
+ PAYMENT_MODE                                       NUMBER(6,2)
+ GENDER                                             VARCHAR2(2)
+
+SQL> insert into Rto_License_2019 values('&License_Number','&License_date','&Owner_name','&Age','&Payment_mode','&Gender');
+Enter value for license_number: A12345678
+Enter value for license_date: 15/08/2008
+Enter value for owner_name: Amit
+Enter value for age: 18
+Enter value for payment_mode: 1200
+Enter value for gender: M
+old   1: insert into Rto_License_2019 values('&License_Number','&License_date','&Owner_name','&Age','&Payment_mode','&Gender')
+new   1: insert into Rto_License_2019 values('A12345678','15/08/2008','Amit','18','1200','M')
+insert into Rto_License_2019 values('A12345678','15/08/2008','Amit','18','1200','M')
+                                                *
+ERROR at line 1:
+ORA-01843: not a valid month
+
+
+SQL> /
+Enter value for license_number: A12345678
+Enter value for license_date: 15aug2018
+Enter value for owner_name: Amit
+Enter value for age: 18
+Enter value for payment_mode: 1200
+Enter value for gender: M
+old   1: insert into Rto_License_2019 values('&License_Number','&License_date','&Owner_name','&Age','&Payment_mode','&Gender')
+new   1: insert into Rto_License_2019 values('A12345678','15aug2018','Amit','18','1200','M')
+
+1 row created.
+
+SQL> /
+Enter value for license_number: B12345678
+Enter value for license_date: 15aug2018
+Enter value for owner_name: Anand
+Enter value for age: 20
+Enter value for payment_mode: 1200
+Enter value for gender: M
+old   1: insert into Rto_License_2019 values('&License_Number','&License_date','&Owner_name','&Age','&Payment_mode','&Gender')
+new   1: insert into Rto_License_2019 values('B12345678','15aug2018','Anand','20','1200','M')
+
+1 row created.
+
+SQL> /
+Enter value for license_number: C12345678
+Enter value for license_date: 14aug2018
+Enter value for owner_name: Ashok
+Enter value for age: 21
+Enter value for payment_mode:
+Enter value for gender: M
+old   1: insert into Rto_License_2019 values('&License_Number','&License_date','&Owner_name','&Age','&Payment_mode','&Gender')
+new   1: insert into Rto_License_2019 values('C12345678','14aug2018','Ashok','21','','M')
+
+1 row created.
+
+SQL> /
+Enter value for license_number: A23456789
+Enter value for license_date: 13aug2008
+Enter value for owner_name: Aman
+Enter value for age: 19
+Enter value for payment_mode:
+Enter value for gender: M
+old   1: insert into Rto_License_2019 values('&License_Number','&License_date','&Owner_name','&Age','&Payment_mode','&Gender')
+new   1: insert into Rto_License_2019 values('A23456789','13aug2008','Aman','19','','M')
+
+1 row created.
+
+SQL> /
+Enter value for license_number: B23456789
+Enter value for license_date: 23aug2008
+Enter value for owner_name: Arpit
+Enter value for age: 20
+Enter value for payment_mode: 1500
+Enter value for gender:
+old   1: insert into Rto_License_2019 values('&License_Number','&License_date','&Owner_name','&Age','&Payment_mode','&Gender')
+new   1: insert into Rto_License_2019 values('B23456789','23aug2008','Arpit','20','1500','')
+
+1 row created.
+
+SQL> /
+Enter value for license_number: A34567890
+Enter value for license_date: 24aug2008
+Enter value for owner_name: Ameet
+Enter value for age: 21
+Enter value for payment_mode: 1350
+Enter value for gender: M
+old   1: insert into Rto_License_2019 values('&License_Number','&License_date','&Owner_name','&Age','&Payment_mode','&Gender')
+new   1: insert into Rto_License_2019 values('A34567890','24aug2008','Ameet','21','1350','M')
+
+1 row created.
+
+SQL> /
+Enter value for license_number: C34567890
+Enter value for license_date: 24aug2008
+Enter value for owner_name: Amit
+Enter value for age: 30
+Enter value for payment_mode:
+Enter value for gender: M
+old   1: insert into Rto_License_2019 values('&License_Number','&License_date','&Owner_name','&Age','&Payment_mode','&Gender')
+new   1: insert into Rto_License_2019 values('C34567890','24aug2008','Amit','30','','M')
+
+1 row created.
+
+SQL> select * from Rto_License_2019;
+
+LICENSE_NU LICENSE_D OWNER_NAME                       AGE PAYMENT_MODE GE
+---------- --------- ------------------------- ---------- ------------ --
+A12345678  15-AUG-18 Amit                              18         1200 M
+B12345678  15-AUG-18 Anand                             20         1200 M
+C12345678  14-AUG-18 Ashok                             21              M
+A23456789  13-AUG-08 Aman                              19              M
+B23456789  23-AUG-08 Arpit                             20         1500
+A34567890  24-AUG-08 Ameet                             21         1350 M
+C34567890  24-AUG-08 Amit                              30              M
+
+7 rows selected.
+*****************************************************************************************************************
+Queries :-
+
+
+1.	Select all information for those records where the name is 5 characters long.
+
+SQL> select * from Rto_License_2019 where length(Owner_Name)=5;
+
+LICENSE_NU LICENSE_D OWNER_NAME                       AGE PAYMENT_MODE GE
+---------- --------- ------------------------- ---------- ------------ --
+B12345678  15-AUG-18 Anand                             20         1200 M
+C12345678  14-AUG-18 Ashok                             21              M
+B23456789  23-AUG-08 Arpit                             20         1500
+A34567890  24-AUG-08 Ameet                             21         1350 M
+
+***************************************************************************************************
+2.	Retrieve all the content of the table 
+
+SQL> select * from Rto_License_2019;
+
+LICENSE_NU LICENSE_D OWNER_NAME                       AGE PAYMENT_MODE GE
+---------- --------- ------------------------- ---------- ------------ --
+A12345678  15-AUG-18 Amit                              18         1200 M
+B12345678  15-AUG-18 Anand                             20         1200 M
+C12345678  14-AUG-18 Ashok                             21              M
+A23456789  13-AUG-08 Aman                              19              M
+B23456789  23-AUG-08 Arpit                             20         1500
+A34567890  24-AUG-08 Ameet                             21         1350 M
+C34567890  24-AUG-08 Amit                              30              M
+
+7 rows selected.
+
+*************************************************************************************************
+3.	Select all information for those records where the name is 4 characters long.
+
+SQL> select * from Rto_License_2019 where length(Owner_Name)=5;
+
+LICENSE_NU LICENSE_D OWNER_NAME                       AGE PAYMENT_MODE GE
+---------- --------- ------------------------- ---------- ------------ --
+B12345678  15-AUG-18 Anand                             20         1200 M
+C12345678  14-AUG-18 Ashok                             21              M
+B23456789  23-AUG-08 Arpit                             20         1500
+A34567890  24-AUG-08 Ameet                             21         1350 M
+
+****************************************************************************************************
+4.	Select all information for those records where the license number begins with ‘A’
+
+SQL> select * from Rto_License_2019 where License_Number like ('A%');
+
+LICENSE_NU LICENSE_D OWNER_NAME                       AGE PAYMENT_MODE GE
+---------- --------- ------------------------- ---------- ------------ --
+A12345678  15-AUG-18 Amit                              18         1200 M
+A23456789  13-AUG-08 Aman                              19              M
+A34567890  24-AUG-08 Ameet                             21         1350 M
+
+
+**************************************************************************************************  
+5.	Select all information for those records where the second character in the license number is 1.
+
+SQL> select * from Rto_License_2019 where License_Number like ('_1%');
+
+LICENSE_NU LICENSE_D OWNER_NAME                       AGE PAYMENT_MODE GE
+---------- --------- ------------------------- ---------- ------------ --
+A12345678  15-AUG-18 Amit                              18         1200 M
+B12345678  15-AUG-18 Anand                             20         1200 M
+C12345678  14-AUG-18 Ashok                             21              M
+*************************************************************************************************
+6.	List all the future dated license records.
+
+
+
+***************************************************************************************************
+7.	List all information for those records where the name sounds like ‘AMIT’.
+8.	List the information for those records where payment is done.
+9.	Display all records of today’s date.
+10.	Display all records of past dates.
+11.	Add another column named ‘city’ as varchar2(15) which must contain value as ‘ANAND’

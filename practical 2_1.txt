@@ -1,0 +1,214 @@
+
+SQL> create table dept_detail_2019
+  2  (
+  3  dept_no varchar2(10) primary key check(dept_no like 'D%'),
+  4  dept_name varchar(20) not null,
+  5  head_name varchar2(10)
+  6  );
+
+Table created.
+
+SQL> insert into dept_detail_2019 values('&dept_no','&dept_name','&head_name');
+Enter value for dept_no: D101
+Enter value for dept_name: statistics
+Enter value for head_name: Dr.Ashokshanubhogue
+old   1: insert into dept_detail_2019 values('&dept_no','&dept_name','&head_name')
+new   1: insert into dept_detail_2019 values('D101','statistics','Dr.Ashokshanubhogue')
+insert into dept_detail_2019 values('D101','statistics','Dr.Ashokshanubhogue')
+                                                        
+ERROR at line 1:
+ORA-12899: value too large for column "SYSTEM"."DEPT_DETAIL_2019"."HEAD_NAME"
+(actual: 19, maximum: 10)
+
+
+SQL> alter table dept_detail_2019 modify(head_name varchar(25));
+
+Table altered.
+
+SQL> insert into dept_detail_2019 values('&dept_no','&dept_name','&head_name');
+Enter value for dept_no: D101
+Enter value for dept_name: statistics
+Enter value for head_name: Dr.Ashok shanubhogue
+old   1: insert into dept_detail_2019 values('&dept_no','&dept_name','&head_name')
+new   1: insert into dept_detail_2019 values('D101','statistics','Dr.Ashok shanubhogue')
+
+1 row created.
+
+SQL> /
+Enter value for dept_no: D202
+Enter value for dept_name: mathematics
+Enter value for head_name: Dr.A.B.patel
+old   1: insert into dept_detail_2019 values('&dept_no','&dept_name','&head_name')
+new   1: insert into dept_detail_2019 values('D202','mathematics','Dr.A.B.patel')
+
+1 row created.
+
+SQL> /
+Enter value for dept_no: D303
+Enter value for dept_name: Business studies
+Enter value for head_name:
+old   1: insert into dept_detail_2019 values('&dept_no','&dept_name','&head_name')
+new   1: insert into dept_detail_2019 values('D303','Business studies','')
+
+1 row created.
+
+SQL> /
+Enter value for dept_no: D401
+Enter value for dept_name: Management
+Enter value for head_name: Prof.Y.c.joshi
+old   1: insert into dept_detail_2019 values('&dept_no','&dept_name','&head_name')
+new   1: insert into dept_detail_2019 values('D401','Management','Prof.Y.c.joshi')
+
+1 row created.
+
+SQL> /
+Enter value for dept_no: D501
+Enter value for dept_name: Chemistry
+Enter value for head_name: Dr.Y.A.shastri
+old   1: insert into dept_detail_2019 values('&dept_no','&dept_name','&head_name')
+new   1: insert into dept_detail_2019 values('D501','Chemistry','Dr.Y.A.shastri')
+
+1 row created.
+
+SQL> select * from dept_detail_2019;
+
+DEPT_NO    DEPT_NAME            HEAD_NAME
+---------- -------------------- -------------------------
+D101       statistics           Dr.Ashok shanubhogue
+D202       mathematics          Dr.A.B.patel
+D303       Business studies
+D401       Management           Prof.Y.c.joshi
+D501       Chemistry            Dr.Y.A.shastri
+
+***********************************************************************************************************************************************************************
+
+SQL> create table emp_data_2019
+  2  (
+  3  emp_id varchar2(10) primary key check(emp_id like 'D%'),
+  4  emp_name varchar(20),
+  5  dept_no varchar2(10) references dept_detail_2019
+  6  );
+
+Table created.
+
+SQL> update dept_detail_2019 set dept_no='D301' where dept_name='Business_studies';
+
+0 rows updated.
+
+SQL> desc emp_data_2019;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMP_ID                                    NOT NULL VARCHAR2(10)
+ EMP_NAME                                           VARCHAR2(20)
+ DEPT_NO                                            VARCHAR2(10)
+
+SQL> commit;
+
+Commit complete.
+
+SQL> insert into emp_data_2019 values('&emp_id','&emp_name','&dept_no');
+Enter value for emp_id: D101
+Enter value for emp_name: Ms.Rupal
+Enter value for dept_no: D101
+old   1: insert into emp_data_2019 values('&emp_id','&emp_name','&dept_no')
+new   1: insert into emp_data_2019 values('D101','Ms.Rupal','D101')
+
+1 row created.
+
+SQL> /
+Enter value for emp_id: D201
+Enter value for emp_name: Mr.kartik
+Enter value for dept_no: D303
+old   1: insert into emp_data_2019 values('&emp_id','&emp_name','&dept_no')
+new   1: insert into emp_data_2019 values('D201','Mr.kartik','D303')
+
+1 row created.
+
+SQL> /
+Enter value for emp_id: D102
+Enter value for emp_name: Ms.aditi
+Enter value for dept_no: D101
+old   1: insert into emp_data_2019 values('&emp_id','&emp_name','&dept_no')
+new   1: insert into emp_data_2019 values('D102','Ms.aditi','D101')
+
+1 row created.
+
+SQL> /
+Enter value for emp_id: D301
+Enter value for emp_name: Mr.rajendra
+Enter value for dept_no: D401
+old   1: insert into emp_data_2019 values('&emp_id','&emp_name','&dept_no')
+new   1: insert into emp_data_2019 values('D301','Mr.rajendra','D401')
+
+1 row created.
+
+SQL> /
+Enter value for emp_id: D501
+Enter value for emp_name: Mr.hardik
+Enter value for dept_no: D202
+old   1: insert into emp_data_2019 values('&emp_id','&emp_name','&dept_no')
+new   1: insert into emp_data_2019 values('D501','Mr.hardik','D202')
+
+1 row created.
+
+SQL> select * from emp_data_2019;
+
+EMP_ID     EMP_NAME             DEPT_NO
+---------- -------------------- ----------
+D101       Ms.Rupal             D101
+D201       Mr.kartik            D303
+D102       Ms.aditi             D101
+D301       Mr.rajendra          D401
+D501       Mr.hardik            D202
+
+SQL> select * from dept_detail_2019;
+
+DEPT_NO    DEPT_NAME            HEAD_NAME
+---------- -------------------- -------------------------
+D101       statistics           Dr.Ashok shanubhogue
+D202       mathematics          Dr.A.B.patel
+D303       Business studies
+D401       Management           Prof.Y.c.joshi
+D501       Chemistry            Dr.Y.A.shastri
+
+SQL> commit;
+
+Commit complete.
+
+SQL> select emp_name, dept_name from emp_data_2019, dept_detail_2019;
+
+EMP_NAME             DEPT_NAME
+-------------------- --------------------
+Ms.Rupal             statistics
+Ms.Rupal             mathematics
+Ms.Rupal             Business studies
+Ms.Rupal             Management
+Ms.Rupal             Chemistry
+Mr.kartik            statistics
+Mr.kartik            mathematics
+Mr.kartik            Business studies
+Mr.kartik            Management
+Mr.kartik            Chemistry
+Ms.aditi             statistics
+
+EMP_NAME             DEPT_NAME
+-------------------- --------------------
+Ms.aditi             mathematics
+Ms.aditi             Business studies
+Ms.aditi             Management
+Ms.aditi             Chemistry
+Mr.rajendra          statistics
+Mr.rajendra          mathematics
+Mr.rajendra          Business studies
+Mr.rajendra          Management
+Mr.rajendra          Chemistry
+Mr.hardik            statistics
+Mr.hardik            mathematics
+
+EMP_NAME             DEPT_NAME
+-------------------- --------------------
+Mr.hardik            Business studies
+Mr.hardik            Management
+Mr.hardik            Chemistry
+
+25 rows selected.
